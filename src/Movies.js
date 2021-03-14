@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import axios from 'axios'
 
-class Device extends Component {
+class Movies extends Component {
     constructor(props) {
         super(props);
         console.log("device ctor");
@@ -48,5 +48,5 @@ class Device extends Component {
 
 }
 
-export default Device;
+export default Movies;
 

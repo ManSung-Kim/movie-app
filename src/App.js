@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import axios from 'axios';
-import Device from './Device';
+import Movies from './Movies';
 
 class Food extends React.Component {
   constructor(props) {
@@ -74,7 +74,7 @@ class App extends React.Component {
     // );
     return (
       <div>
-        <Device />
+        <Movies />
       </div>
     );
   }
