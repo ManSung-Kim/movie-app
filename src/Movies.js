@@ -12,14 +12,24 @@ class Movies extends Component {
         data:[],
     };
     
-    getMyData = async() => {
+    //getMyData = async() => {
+    //getMyData = async function() {
+    getMyData = async () => {
         //const data = await axios.get('https://www.everdevel.com/ReactJS/axios/json/');
         // const data = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
         // console.log('data is ' + JSON.stringify(data));
-        let data = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
+        let data;
+        try {
+        data = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
         data = data.data.data.movies;
-        console.log('data is ' + JSON.stringify(data));
-        this.setState({data});
+        } catch (err) {
+            console.log(err);
+        } finally {
+            console.log('data is ' + JSON.stringify(data));
+            this.setState({data});
+        }
+
+        // async fcn은 암묵적으로 Promise를 반환
     };
 
     componentDidMount() {
@@ -39,7 +49,18 @@ class Movies extends Component {
             <div>
                 {
                     this.state.data.map((movies) => {
-                        return <p key={movies.hash}>title:{movies.title}</p>;
+                        return (
+                            <div>
+                                <p key={movies.hash}>title:{movies.title}</p>
+                                <img src={movies.medium_cover_image} 
+                                    loading="lazy" alt={movies.title} title={movies.title}/>
+                                <div>
+                                    <h1>{movies.title}</h1>
+                                    <h4>{movies.rating}</h4>
+                                    <h4>{movies.year}</h4>
+                                </div>  
+                            </div>
+                        );
                     })
                 }
             </div>
