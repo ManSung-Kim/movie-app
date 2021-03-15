@@ -73,7 +73,7 @@ class App extends React.Component {
     //   </div>
     // );
     return (
-      <div>
+      <div class='container'>
         <Movies />
       </div>
     );

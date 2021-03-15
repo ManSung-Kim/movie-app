@@ -43,22 +43,43 @@ class Movies extends Component {
         console.log('in componentWillUnmount');
     }
 
+    getYutubeUrl(movieName) {
+        return 'https://www.youtube.com/results?search_query=movie+' + movieName;
+    }
+
+    getRateString(rate) {
+        var i;
+        let ret;
+        var mainStar = parseInt(rate/2);
+        var subStar = rate%2;
+        for(i = 0; i < mainStar; i++) {
+            ret += '⭐';
+        }
+        ret += '☆';
+
+        return ret;
+    }
+
     render() {
         console.log('is ' + JSON.stringify(this.state.data));
         return (
-            <div>
+            <div class='movies'>
                 {
                     this.state.data.map((movies) => {
                         return (
-                            <div>
-                                <p key={movies.hash}>title:{movies.title}</p>
-                                <img src={movies.medium_cover_image} 
-                                    loading="lazy" alt={movies.title} title={movies.title}/>
-                                <div>
+                            <div class="movie">
+                                <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
+                                    <img class="movieposter" src={movies.medium_cover_image} 
+                                        loading="lazy" alt={movies.title} title={movies.title}/>
+                                </a>
+                                <div class="moviesummary">
                                     <h1>{movies.title}</h1>
-                                    <h4>{movies.rating}</h4>
+                                    <h4>{this.getRateString(movies.rating)}</h4>
                                     <h4>{movies.year}</h4>
-                                </div>  
+                                    <div class="moviesynopsis">
+                                        <p>{movies.synopsis}</p>
+                                    </div>  
+                                </div>
                             </div>
                         );
                     })
