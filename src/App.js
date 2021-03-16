@@ -4,6 +4,7 @@ import React from 'react';
 import axios from 'axios';
 import Movies from './Movies';
 import { useMediaQuery } from "react-responsive"
+//import { Mobile/*,Tablet,Pc*/ } from './DeviceMediaQuery';
 
 
 // getMovies = async () => {
@@ -91,16 +92,32 @@ function App() {
       dev += "unknown";
     }
 
-    return <p>{dev}</p>;
+    //return <p>{dev}</p>;
+    return dev;
   }
 
   return (
     <div>      
-      <div>
+      <div class='responsivestate'>
         {getDeviceType()}
-        {/* {isPc && <p>Pc Mode</p>}
+        {/*{isPc && <p>Pc Mode</p>}
         {isTablet && <p>Tablet Mode</p>}
         {isMobile && <p>Mobile Mode</p>} */}
+        {/* <Mobile>
+          <div className="mobile_container">
+            <p>MOBILE</p>
+          </div>
+        </Mobile> */}
+        {/* <Tablet>
+          <div className="tablet_container">
+            <p>Tablet</p>
+          </div>
+        </Tablet>
+        <Pc>
+          <div className="Pc_container">
+            <p>Tablet</p>
+          </div>
+        </Pc> */}
       </div>
       <div class='container'>
         <Movies />
