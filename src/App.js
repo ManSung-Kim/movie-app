@@ -56,7 +56,7 @@ function App() {
     query : "(min-width:768px) and (max-width:1023px)"
   });
   const isMobile = useMediaQuery({
-    query : "(min-width:767px)"
+    query : "(max-width:767px)"
   });
 
   // render() {
@@ -120,7 +120,7 @@ function App() {
         </Pc> */}
       </div>
       <div class='container'>
-        <Movies />
+        <Movies isMobile={isMobile}/>
       </div>
     </div>
   );

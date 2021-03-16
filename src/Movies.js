@@ -1,11 +1,12 @@
 import React,{Component} from 'react'
 import axios from 'axios'
+//import { useMediaQuery } from "react-responsive"
 
 class Movies extends Component {
     constructor(props) {
         super(props);
         console.log("device ctor");
-
+        console.log(props.isMobile);
     }
 
     state = {
@@ -31,6 +32,17 @@ class Movies extends Component {
 
         // async fcn은 암묵적으로 Promise를 반환
     };
+    
+    //React Hook "useMediaQuery" cannot be called at the top level.
+    // isPc = useMediaQuery( {
+    //     query : "(min-width:1024px)"
+    //   });
+    //   isTablet = useMediaQuery({
+    //     query : "(min-width:768px) and (max-width:1023px)"
+    //   });
+    //   isMobile = useMediaQuery({
+    //     query : "(max-width:767px)"
+    //   });
 
     componentDidMount() {
         console.log('in componentDidMount');
@@ -62,12 +74,13 @@ class Movies extends Component {
 
     render() {
         console.log('is ' + JSON.stringify(this.state.data));
+        console.log('ismobile? ' + this.props.isMobile);
         return (
             <div class='movies'>
                 {
                     this.state.data.map((movies) => {
                         return (
-                            <div class="movie">
+                            <div class={this.props.isMobile ? "movie_mobile" : "movie"}>
                                 <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
                                     <img class="movieposter" src={movies.medium_cover_image} 
                                         loading="lazy" alt={movies.title} title={movies.title}/>

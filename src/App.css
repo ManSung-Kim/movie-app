@@ -64,6 +64,16 @@
   width: 100%;
 }
 
+.movie_mobile {
+  /* display: flex; */
+  background-color: #eeeeee;
+  border-radius: 10px;
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 10px;
+  width: 100%;
+}
+
 .movie .movielink { 
   display: flex;
   margin:0;
