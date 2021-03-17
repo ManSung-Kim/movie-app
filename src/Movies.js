@@ -84,6 +84,7 @@ class Movies extends Component {
                                 <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
                                     <img class="movieposter" src={movies.medium_cover_image} 
                                         loading="lazy" alt={movies.title} title={movies.title}/>
+                                    {/* <div class="movieposter_gradation"></div> */}
                                 </a>
                                 <div class="moviesummary">
                                     <h1>{movies.title}</h1>
