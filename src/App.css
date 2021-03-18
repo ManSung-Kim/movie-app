@@ -41,6 +41,10 @@
   padding: 20px;
 }
 
+.up-on-scroll {
+  transition: transform 0.7s, opacity 1s;
+}
+
 .container {
   display:flex;
   justify-content: center;

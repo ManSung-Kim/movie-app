@@ -1,6 +1,20 @@
 import React,{Component} from 'react'
 import axios from 'axios'
 //import { useMediaQuery } from "react-responsive"
+import * as ScrollUtil from './ScrollUtil.js'
+
+function isElementUnderBottom(elem, triggerDiff) {
+    const {top} = elem.getBoundingClientRect(); 
+        // 등록된 element의 Rect를 top으로 저장
+    const {innerHeight} = window;
+        // 현재 window를 innerHeight로 저장
+
+    return top > innerHeight + (triggerDiff || 0); 
+        // (현재 window + triggerDiff(예시로는 -20))보다 
+        // element의 rect가 크냐? 
+        // 크다 : 현재 window보다 elem이 아래에 위치하므로 true return
+        // 작다 : 현재 window보다 elem이 같거나(맞나?) 위에 위치하므로 false return
+}
 
 class Movies extends Component {
     constructor(props) {
@@ -72,18 +86,47 @@ class Movies extends Component {
         return ret;
     }
 
+    // 왜 component의 함수로 집어넣으면 is not defined? 나중에 알아보기 210318
+    // isElementUnderBottom(elem, triggerDiff) {
+    //     const {top} = elem.getBoundingClientRect(); 
+    //         // 등록된 element의 Rect를 top으로 저장
+    //     const {innerHeight} = window;
+    //         // 현재 window를 innerHeight로 저장
+    
+    //     return top > innerHeight + (triggerDiff || 0); 
+    //         // (현재 window + triggerDiff(예시로는 -20))보다 
+    //         // element의 rect가 크냐? 
+    //         // 크다 : 현재 window보다 elem이 아래에 위치하므로 true return
+    //         // 작다 : 현재 window보다 elem이 같거나(맞나?) 위에 위치하므로 false return
+    // }
+    
+    handleScroll() { // scroll callback
+        const elems = document.querySelectorAll('.up-on-scroll');
+        elems.forEach(elem => {
+            if(isElementUnderBottom(elem, -20)) { // 현재 시야보다 아래에 있을 때
+                elem.style.opacity = "0"; // 완전 투명
+                elem.style.transform = 'translateY(70px)'; // 70px 아래에 이동하도록 효과
+            } else { // 현재와 동일선상 혹은 위에 위치할 때
+                elem.style.opacity = 1;
+                elem.style.transform = 'translateY(0px)'; // 제자리로 돌아오는 효과
+            }
+        });
+    }
+
     render() {
         console.log('is ' + JSON.stringify(this.state.data));
         console.log('ismobile? ' + this.props.isMobile);
+        //ScrollUtil.handleScroll();
+        window.addEventListener('scroll', this.handleScroll);
         return (
             <div class='movies'>
                 {
                     this.state.data.map((movies) => {
                         return (
-                            <div class={this.props.isMobile ? "movie_mobile" : "movie"}>
+                            <div class={(this.props.isMobile ? "movie_mobile" : "movie") + " up-on-scroll"}>
                                 <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
-                                    <img class="movieposter" src={movies.medium_cover_image} 
-                                        loading="lazy" alt={movies.title} title={movies.title}/>
+                                    <img class="movieposter" src={movies.medium_cover_image}
+                                        loading="lazy" alt={movies.title} title={movies.title} />
                                     {/* <div class="movieposter_gradation"></div> */}
                                 </a>
                                 <div class="moviesummary">
@@ -92,7 +135,7 @@ class Movies extends Component {
                                     <h4>{movies.year}</h4>
                                     <div class="moviesynopsis">
                                         <p>{movies.synopsis}</p>
-                                    </div>  
+                                    </div>
                                 </div>
                             </div>
                         );
