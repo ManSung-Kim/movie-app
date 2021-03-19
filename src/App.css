@@ -50,12 +50,18 @@
   justify-content: center;
   background-color: #282c34;
 }
+.container > div {
+  display: flex;
+  justify-content: center;
+}
+
 
 .movies {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   width: 85%;
+  position: absolute; /* bg와 따로 스크롤링되기위해 abs설정 */
 }
 
 .movie {
@@ -128,6 +134,36 @@
 .movie_mobile .moviesummary { 
   flex-basis:70%;
   margin: 10px;
+}
+
+
+.background-change-wrap {
+  height: 300vh;
+  padding-bottom: 100px;
+}
+.background-change-wrap > div {
+ overflow: hidden; 
+  width: 100vw;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+.background-change-wrap > div > h2 {
+  margin: 0;
+  padding: 20px;
+  line-height: 40px;
+  background: black;
+  color: white;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.background-change-wrap > div > img {
+  position: sticky;
+  width: 100%;
+  height: calc(100% - 80px);
+  object-fit: cover;
 }
 
 /* .movie .moviesynopsis { flex-basis:50%; } */

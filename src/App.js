@@ -96,6 +96,45 @@ function App() {
     return dev;
   }
 
+  //var aa = 1.5;
+  const handleScroll = (e) => { // scroll callback
+    // const sections = document.querySelectorAll('section');
+    // let value = window.pageYOffset / sections.offsetTop + 1;
+    // sections.style = {
+    //   transform:[]
+    // };
+    // //sections.style.transform  = 'scale(${value})';
+    // sections.style.transform = 'scale(${aa})';
+    // const scrollTop = e.srcElement.scrollingElement.scrollTop;
+    // console.log();
+    // // elems.forEach(elem => {
+    // //     if(isElementUnderBottom(elem, -20)) { // 현재 시야보다 아래에 있을 때
+    // //         elem.style.opacity = "0"; // 완전n 투명
+    // //         elem.style.transform = 'translateY(70px)'; // 70px 아래에 이동하도록 효과
+    // //     } else { // 현재와 동일선상 혹은 위에 위치할 때
+    // //         elem.style.opacity = 1;
+    // //         elem.style.transform = 'translateY(0px)'; // 제자리로 돌아오는 효과
+    // //     }
+    // // });
+    const changeBgSection = document.querySelector('.background-change-wrap');
+    const changeBgImg = document.querySelector('.background-change-wrap > div');
+    const { top: bgTop, height: bgHeight } = changeBgSection.getBoundingClientRect();
+    console.log(bgTop);
+    if (bgTop < 0) {
+      const rate = (-1) * bgTop / 4;
+      //changeBgImg.style.filter = `grayscale(${rate}%)`;
+      changeBgImg.style.opacity = `${(100 - rate / 5) / 100}`;
+      //      
+      const bgImg = document.querySelector('.background-change-wrap > div > img');
+      bgImg.src = 'https://yts.mx/assets/images/movies/The_Shawshank_Redemption_1994/medium-cover.jpg';
+    } else {
+      changeBgImg.style.filter = 'none';
+      changeBgImg.style.opacity = `1`;
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
+
   return (
     <div>      
       <div class='responsivestate'>
@@ -120,7 +159,14 @@ function App() {
         </Pc> */}
       </div>
       <div class='container'>
-        <Movies isMobile={isMobile}/>
+        <div class='background-change-wrap'>
+          <div>
+            <img name='img-buffer-1' 
+              // src='https://yts.mx/assets/images/movies/doctor_who_the_day_of_the_doctor_2013/medium-cover.jpg'
+              />
+          </div>
+        </div>
+          <Movies isMobile={isMobile}/>
       </div>
     </div>
   );
