@@ -37,7 +37,7 @@ function App() {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     console.log('like didMount HOOK@app.js');
-    setBackgroundImage('https://yts.mx/assets/images/movies/The_Shawshank_Redemption_1994/medium-cover.jpg');
+    //setBackgroundImage('https://yts.mx/assets/images/movies/The_Shawshank_Redemption_1994/medium-cover.jpg');
     setBackgroundImageOpacity(1);
   }, []); 
   //두 번째 배열에 props나 state값을 넣을경우 
@@ -80,7 +80,7 @@ function App() {
     } else {
       dev += "unknown";
     }
-    
+
     return dev;
   }
 
@@ -98,21 +98,18 @@ function App() {
   }
 
   const handleScroll = (e) => { // scroll callback
-    const changeBgSection = document.querySelector('.background-change-wrap');
-    const changeBgImg = document.querySelector('.background-change-wrap > div');
-    const { top: bgTop, height: bgHeight } = changeBgSection.getBoundingClientRect();
-    console.log(bgTop);
+     const changeBgSection = document.querySelector('.background-change-wrap');
+     const { top: bgTop, height: bgHeight } = changeBgSection.getBoundingClientRect();
+    var opacity = '1';
     if (bgTop < 0) {
       const rate = (-1) * bgTop / 4;
-      //changeBgImg.style.filter = `grayscale(${rate}%)`;
-      changeBgImg.style.opacity = `${(100 - rate / 5) / 100}`;
-      //      
-      const bgImg = document.querySelector('.background-change-wrap > div > img');
-      bgImg.src = 'https://yts.mx/assets/images/movies/The_Shawshank_Redemption_1994/medium-cover.jpg';
+      setBackgroundImage('https://yts.mx/assets/images/movies/The_Shawshank_Redemption_1994/medium-cover.jpg');
+      opacity = `${(100 - rate / 5) / 100}`;
     } else {
-      //changeBgImg.style.filter = 'none';
-      changeBgImg.style.opacity = `1`;
+      opacity = `1`;
     }
+
+    setBackgroundImageOpacity(opacity);
   }
 
   return (
