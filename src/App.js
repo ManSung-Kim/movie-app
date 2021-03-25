@@ -39,6 +39,7 @@ function App() {
     console.log('like didMount HOOK@app.js');
     //setBackgroundImage('https://yts.mx/assets/images/movies/The_Shawshank_Redemption_1994/medium-cover.jpg');
     setBackgroundImageOpacity(1);
+    setBackgroundGradient(true);
   }, []); 
   //두 번째 배열에 props나 state값을 넣을경우 
   //         --> 해당 값이 변경될때만 effect hook 호출
@@ -84,6 +85,17 @@ function App() {
     return dev;
   }
 
+  const setBackgroundGradient = (isVisible) => {
+    const bg = document.querySelector('.gradient-border');
+    if(isVisible) {
+      bg.backgroundImage = 'linear-gradient(60deg, #000000, #9b9bda, #a9a9a9, #a9a9a9, #a9a9a9)';
+      console.log(isVisible + "vis " + bg.backgroundImage);
+    } else {
+      bg.backgroundImage = 'linear-gradient(60deg, #000000)';
+    }
+    console.log(isVisible + "vis " + bg.backgroundImage);
+  }
+
   const setBackgroundImageOpacity = (opacity) => {
     const bg = document.querySelector('.background-change-wrap > div');
     bg.style.opacity = opacity;
@@ -110,6 +122,7 @@ function App() {
     }
 
     setBackgroundImageOpacity(opacity);
+    setBackgroundGradient(false);
   }
 
   return (
@@ -118,12 +131,12 @@ function App() {
         {getDeviceType()}
       </div>
       <div class='container'>
-        <div class='background-change-wrap'>
+        <div class='background-change-wrap gradient-border'>
           <div>
             <img name='img-buffer-1'/>
           </div>
         </div>
-          <Movies isMobile={isMobile}/>
+      <Movies isMobile={isMobile}/>
       </div>
     </div>
   );
