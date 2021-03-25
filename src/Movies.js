@@ -59,14 +59,14 @@ class Movies extends Component {
     //   });
 
     componentDidMount() {
-        console.log('in componentDidMount');
+        console.log('in componentDidMount@Movie.js');
         this.getMyData();
     }
     componentDidUpdate() {
-        console.log('in componentDidUpdate');
+        console.log('in componentDidUpdate@Movie.js');
     }
     componentWillUnmount() {
-        console.log('in componentWillUnmount');
+        console.log('in componentWillUnmount@Movie.js');
     }
 
     getYutubeUrl(movieName) {

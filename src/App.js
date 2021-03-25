@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Movies from './Movies';
 import { useMediaQuery } from "react-responsive"
@@ -32,22 +32,28 @@ import { useMediaQuery } from "react-responsive"
 
 //class App extends React.Component {
 function App() {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     isLoading: true,
-  //     movies: []
-  //   }
-  //   //this.getMovies();
-  // }
+  
+  // componentDidMount로 동작시키거나, 바인딩된 props,state 변경시에만 불리는 hook
+  useEffect(() => {
+    console.log('like didMount HOOK@app.js');
+  }, []); 
+  //두 번째 배열에 props나 state값을 넣을경우 
+  //         --> 해당 값이 변경될때만 effect hook 호출
+  //두 번째 배열에 아무것도 넣지않을 경우 
+  //         --> 바인딩 감시가 필요없으므로 component가 mount될 때만 불림
 
-  // getMovies = async() => {
-  //   const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
-  //   console.log(movies.data.data.movies);
-    
-  //   this.setState({movies: movies});
-  //   console.log(this.state.movies);
-  // }
+  // componentDidMount와 componentDidUpdate와 비슷한 lifcyle을 갖는 Hook
+  useEffect(() => {
+    // 마운트, 렌더링마다 호출됨
+    console.log('like didMount or didUpdate HOOK@app.js');
+  });
+
+  // componentWillUnmount와 비슷한 liftcycle을 갖는 Hook (함수 return을 넣어주면 됨)
+  useEffect(() => {
+    console.log('like didUnmount HOOK@app.js');
+    return () => {
+    }
+  });
 
   const isPc = useMediaQuery( {
     query : "(min-width:1024px)"
@@ -58,26 +64,6 @@ function App() {
   const isMobile = useMediaQuery({
     query : "(max-width:767px)"
   });
-
-  // render() {
-  //   //this.getMovies();
-  //   // return (
-  //   //   <div className="App">
-  //   //     {/* <Food name="testfood"/> */}
-  //   //     <Food name={this.movies}/>
-  //   //   </div>
-  //   // );
-  //   return (
-  //     <div class='container'>
-  //       <div>
-  //         {isPc && <p>Pc Mode</p>}
-  //         {isTablet && <p>Tablet Mode</p>}
-  //         {isMobile && <p>Mobile Mode</p>}
-  //       </div>
-  //       <Movies />
-  //     </div>
-  //   );
-  // }
 
   const getDeviceType = () => {
     let dev = "Device is ";
@@ -94,6 +80,19 @@ function App() {
 
     //return <p>{dev}</p>;
     return dev;
+  }
+
+  const setBackgroundImageOpacity = (opacity) => {
+    const bg = document.querySelector('.background-change-wrap > div');
+    bg.style.opacity = opacity;
+  }
+
+  const setBackgroundImage = (image) => {
+    if(image == null)
+      return;
+
+    const bgImg = document.querySelector('.background-change-wrap > div > img');
+    bgImg.src = image;
   }
 
   //var aa = 1.5;
@@ -128,7 +127,7 @@ function App() {
       const bgImg = document.querySelector('.background-change-wrap > div > img');
       bgImg.src = 'https://yts.mx/assets/images/movies/The_Shawshank_Redemption_1994/medium-cover.jpg';
     } else {
-      changeBgImg.style.filter = 'none';
+      //changeBgImg.style.filter = 'none';
       changeBgImg.style.opacity = `1`;
     }
   }
