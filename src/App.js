@@ -87,6 +87,11 @@ function App() {
 
   const setBackgroundGradient = (isVisible) => {
     const bg = document.querySelector('.gradient-border');
+
+    if(bg == null) {
+      return;
+    }
+
     if(isVisible) {
       bg.backgroundImage = 'linear-gradient(60deg, #000000, #9b9bda, #a9a9a9, #a9a9a9, #a9a9a9)';
       console.log(isVisible + "vis " + bg.backgroundImage);
@@ -115,7 +120,7 @@ function App() {
     var opacity = '1';
     if (bgTop < 0) {
       const rate = (-1) * bgTop / 4;
-      setBackgroundImage('https://yts.mx/assets/images/movies/The_Shawshank_Redemption_1994/medium-cover.jpg');
+      //setBackgroundImage('https://yts.mx/assets/images/movies/The_Shawshank_Redemption_1994/medium-cover.jpg');
       opacity = `${(100 - rate / 5) / 100}`;
     } else {
       opacity = `1`;
@@ -125,18 +130,31 @@ function App() {
     setBackgroundGradient(false);
   }
 
+  //let isUsingGradAnim = true;
+  const [isUsingGradAnim, setUsingGradAnim] = useState(true);
+
+  const notifyInitialLoadingComplete = () => {
+    console.log("mv init noty");
+    setBackgroundGradient(false);
+    setUsingGradAnim(current => !current);
+  }
+
+  useEffect(() => {
+    console.log("us anim changed" + isUsingGradAnim);
+  }, [isUsingGradAnim]); // isUsingGradAnim이 변경되면 해당 hook이 불린다
+
   return (
     <div>      
       <div class='responsivestate'>
         {getDeviceType()}
       </div>
       <div class='container'>
-        <div class='background-change-wrap gradient-border'>
-          <div>
+        <div class={'background-change-wrap'}>
+          <div class={isUsingGradAnim?'gradient-border':''}>
             <img name='img-buffer-1'/>
           </div>
         </div>
-      <Movies isMobile={isMobile}/>
+      <Movies isMobile={isMobile} notifyInitialLoadingComplete={notifyInitialLoadingComplete}/>
       </div>
     </div>
   );

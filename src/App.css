@@ -168,23 +168,10 @@
 }
 
 .gradient-border {
-  /* --borderWidth: 300px; */
-  /* background: #1D1F20; */
   position: relative;
   border-radius: var(--borderWidth);
-/* }
-.gradient-border:after {
-  content: '';
-  position: absolute; */
-  /* top: calc(-1 * var(--borderWidth));
-  left: calc(-1 * var(--borderWidth));
-  height: calc(100% + var(--borderWidth) * 2);
-  width: calc(100% + var(--borderWidth) * 2); */
-  /* background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82); */
-  /* background: linear-gradient(60deg, #000000, #9b9bda, #a9a9a9, #a9a9a9, #a9a9a9); */
-  background-image: linear-gradient(60deg, #000000, #9b9bda, #a9a9a9, #a9a9a9, #a9a9a9);
+  background-image: linear-gradient(60deg, #000000, #9b9bda, #352828, #964848, #a9a9a9);
   border-radius: calc(2 * var(--borderWidth));
-  /* z-index: -1; */
   animation: animatedgradient 3s ease alternate infinite;
   background-size: 300% 300%;
 }

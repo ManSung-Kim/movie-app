@@ -42,6 +42,7 @@ class Movies extends Component {
         } finally {
             console.log('data is ' + JSON.stringify(data));
             this.setState({data});
+            this.props.notifyInitialLoadingComplete();
         }
 
         // async fcn은 암묵적으로 Promise를 반환
