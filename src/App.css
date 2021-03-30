@@ -56,6 +56,33 @@
   justify-content: center;
 } */
 
+.moviemain {
+  display: flex;
+  /* justify-content: space-between; */
+  /* flex-wrap: wrap; */
+  /* flex-wrap: nowrap; */
+  align-items: stretch;
+  flex-direction: column;
+  width: 100%;
+  position: absolute; /* bg와 따로 스크롤링되기위해 abs설정 */
+  overflow: auto;
+}
+
+.recomm_movie {
+  display: flex;
+  height: auto;
+  position: relative;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.recomm_movie .recomm_movie_poster {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
 .movies {
   display: flex;
@@ -64,7 +91,7 @@
   flex-wrap: nowrap;
   align-items: center;
   width: 100%;
-  position: absolute; /* bg와 따로 스크롤링되기위해 abs설정 */
+  /*position: absolute; *//* bg와 따로 스크롤링되기위해 abs설정 */
   overflow: auto;
 }
 

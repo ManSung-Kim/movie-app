@@ -25,6 +25,7 @@ class Movies extends Component {
 
     state = {
         data:[],
+        recomm_movie:0,
     };
     
     //getMyData = async() => {
@@ -43,6 +44,9 @@ class Movies extends Component {
             console.log('data is ' + JSON.stringify(data));
             this.setState({data});
             this.props.notifyInitialLoadingComplete();
+            
+            let recomm_movie = data[0];
+            this.setState({recomm_movie});
         }
 
         // async fcn은 암묵적으로 Promise를 반환
@@ -120,28 +124,42 @@ class Movies extends Component {
         //ScrollUtil.handleScroll();
         window.addEventListener('scroll', this.handleScroll);
         return (
-            <div class='movies'>
-                {
-                    this.state.data.map((movies) => {
-                        return (
-                            <div class={(this.props.isMobile ? "movie_mobile" : "movie") + " up-on-scroll"}>
-                                <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
-                                    <img class="movieposter" src={movies.medium_cover_image}
-                                        loading="lazy" alt={movies.title} title={movies.title} />
-                                    {/* <div class="movieposter_gradation"></div> */}
-                                </a>
-                                <div class="moviesummary">
-                                    <h1>{movies.title}</h1>
-                                    <h4>{this.getRateString(movies.rating)}</h4>
-                                    <h4>{movies.year}</h4>
-                                    <div class="moviesynopsis">
-                                        <p>{movies.synopsis}</p>
+            <div class='moviemain'>
+                <div class='recomm_movie'>
+                    {
+                        <div>
+                            <img class='recomm_movie_poster' src={this.state.recomm_movie.large_cover_image}/>
+                        </div>
+                        // this.state.recomm_movie.map((recomm_movie) => {
+                        //     return (
+                        //         <div>$recomm_movie</div>
+                        //     );
+                        // })
+                    }
+                </div>
+                <div class='movies'>
+                    {
+                        this.state.data.map((movies) => {
+                            return (
+                                <div class={(this.props.isMobile ? "movie_mobile" : "movie") + " up-on-scroll"}>
+                                    <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
+                                        <img class="movieposter" src={movies.medium_cover_image}
+                                            loading="lazy" alt={movies.title} title={movies.title} />
+                                        {/* <div class="movieposter_gradation"></div> */}
+                                    </a>
+                                    <div class="moviesummary">
+                                        <h1>{movies.title}</h1>
+                                        <h4>{this.getRateString(movies.rating)}</h4>
+                                        <h4>{movies.year}</h4>
+                                        <div class="moviesynopsis">
+                                            <p>{movies.synopsis}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        );
-                    })
-                }
+                            );
+                        })
+                    }
+                </div>
             </div>
         );
     }
