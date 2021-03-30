@@ -51,18 +51,37 @@
   justify-content: center;
   background-color: #282c34;
 }
-.container > div {
+/* .container > div {
   display: flex;
   justify-content: center;
-}
+} */
 
 
 .movies {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  width: 85%;
+  /* flex-wrap: wrap; */
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
   position: absolute; /* bg와 따로 스크롤링되기위해 abs설정 */
+  overflow: auto;
+}
+
+.movies::-webkit-scrollbar { /*스크롤바 백그라운드*/
+  width: 100px;
+  background-color: transparent;
+}
+
+.movies::-webkit-scrollbar-thumb { /*스크롤바헤드*/
+  background-color: red;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+.movies::-webkit-scrollbar-track { /*스크롤바백그라운드 위에서 헤드 제외영역*/
+  background-color: transparent;
 }
 
 .movie {
@@ -71,8 +90,10 @@
   border-radius: 10px;
   justify-content: space-around;
   flex-direction: row;
+  flex-wrap: nowrap;
   margin: 10px;
   width: 100%;
+  max-height: 300px;
 }
 
 .movie_mobile {
@@ -129,7 +150,31 @@
 
 .movie .moviesummary { 
   flex-basis:70%;
-  margin: 10px;
+  margin-left: 5px;
+  margin-top: 0px;
+  margin-right: 5px;
+  margin-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: auto;
+  max-width: 500px;
+  /* max-height: 300px; */
+  align-items: stretch;
+}
+
+.movie .moviesummary::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+.movie .moviesummary::-webkit-scrollbar-thumb {
+  background-color: rgb(189, 189, 189);
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}.movie .moviesummary::-webkit-scrollbar-track {
+  background-color: transparent;
+
 }
 
 .movie_mobile .moviesummary { 
