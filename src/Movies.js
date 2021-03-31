@@ -127,14 +127,16 @@ class Movies extends Component {
             <div class='moviemain'>
                 <div class='recomm_movie'>
                     {
-                        <div>
+                        <a class='recomm_movie_poster_wrapper' href={this.getYutubeUrl(this.state.recomm_movie.title)} >
                             <img class='recomm_movie_poster' src={this.state.recomm_movie.large_cover_image}/>
-                        </div>
-                        // this.state.recomm_movie.map((recomm_movie) => {
-                        //     return (
-                        //         <div>$recomm_movie</div>
-                        //     );
-                        // })
+                            <div class='recomm_movie_title'>
+                                <div class='recomm_movie_title_wrapper'>
+                                    <h1>{this.state.recomm_movie.title}</h1>
+                                    <h2>{this.state.recomm_movie.title}</h2>
+                                    <h3>{this.state.recomm_movie.genres}</h3>
+                                </div>
+                            </div>                            
+                        </a>
                     }
                 </div>
                 <div class='movies'>
