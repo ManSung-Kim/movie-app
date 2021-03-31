@@ -81,7 +81,7 @@ class Movies extends Component {
     getRateString(rate) {
         var i;
         let ret;
-        var mainStar = parseInt(rate/2);
+        var mainStar = parseInt(Number(rate)/2);
         var subStar = rate%2;
         for(i = 0; i < mainStar; i++) {
             ret += '⭐';
@@ -139,28 +139,177 @@ class Movies extends Component {
                         </a>
                     }
                 </div>
-                <div class='movies'>
-                    {
-                        this.state.data.map((movies) => {
-                            return (
-                                <div class={(this.props.isMobile ? "movie_mobile" : "movie") + " up-on-scroll"}>
-                                    <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
-                                        <img class="movieposter" src={movies.medium_cover_image}
-                                            loading="lazy" alt={movies.title} title={movies.title} />
-                                        {/* <div class="movieposter_gradation"></div> */}
-                                    </a>
-                                    <div class="moviesummary">
-                                        <h1>{movies.title}</h1>
-                                        <h4>{this.getRateString(movies.rating)}</h4>
-                                        <h4>{movies.year}</h4>
-                                        <div class="moviesynopsis">
-                                            <p>{movies.synopsis}</p>
+                
+                <div class='movies_wrapper'>
+                    <h1 class='movies_summary_category'>All Moives</h1>
+                    <div class='movies'>
+                        {
+                            this.state.data.map((movies) => {
+                                return (
+                                    <div class={(this.props.isMobile ? "movie_mobile" : "movie") + " up-on-scroll"}>
+                                        <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
+                                            <img class="movieposter" src={movies.medium_cover_image}
+                                                loading="lazy" alt={movies.title} title={movies.title} />
+                                            {/* <div class="movieposter_gradation"></div> */}
+                                        </a>
+                                        <div class="moviesummary">
+                                            <h1>{movies.title}</h1>
+                                            <h4>{this.getRateString(movies.rating)}</h4>
+                                            <h4>{movies.year}</h4>
+                                            <div class="moviesynopsis">
+                                                <p>{movies.synopsis}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        })
-                    }
+                                );
+                            })
+                        }
+                    </div>
+                </div>
+                
+                <div class='movies_wrapper'>
+                    <h1 class='movies_summary_category'>Comedy</h1>
+                    <div class='movies'>
+                        {
+                            this.state.data.map((movies) => {
+                                if(movies.genres.includes('Comedy')) {
+                                    return (
+                                        <div class={(this.props.isMobile ? "movie_mobile" : "movie") + " up-on-scroll"}>
+                                            <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
+                                                <img class="movieposter" src={movies.medium_cover_image}
+                                                    loading="lazy" alt={movies.title} title={movies.title} />
+                                                {/* <div class="movieposter_gradation"></div> */}
+                                            </a>
+                                            <div class="moviesummary">
+                                                <h1>{movies.title}</h1>
+                                                <h4>{this.getRateString(movies.rating)}</h4>
+                                                <h4>{movies.year}</h4>
+                                                <div class="moviesynopsis">
+                                                    <p>{movies.synopsis}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                            })
+                        }
+                    </div>
+                </div>
+                
+                <div class='movies_wrapper'>
+                    <h1 class='movies_summary_category'>Action</h1>
+                    <div class='movies'>
+                        {
+                            this.state.data.map((movies) => {
+                                if(movies.genres.includes('Action')) {
+                                    return (
+                                        <div class={(this.props.isMobile ? "movie_mobile" : "movie") + " up-on-scroll"}>
+                                            <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
+                                                <img class="movieposter" src={movies.medium_cover_image}
+                                                    loading="lazy" alt={movies.title} title={movies.title} />
+                                                {/* <div class="movieposter_gradation"></div> */}
+                                            </a>
+                                            <div class="moviesummary">
+                                                <h1>{movies.title}</h1>
+                                                <h4>{this.getRateString(movies.rating)}</h4>
+                                                <h4>{movies.year}</h4>
+                                                <div class="moviesynopsis">
+                                                    <p>{movies.synopsis}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div class='movies_wrapper'>
+                    <h1 class='movies_summary_category'>Romance</h1>
+                    <div class='movies'>
+                        {
+                            this.state.data.map((movies) => {
+                                if(movies.genres.includes('Romance')) {
+                                    return (
+                                        <div class={(this.props.isMobile ? "movie_mobile" : "movie") + " up-on-scroll"}>
+                                            <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
+                                                <img class="movieposter" src={movies.medium_cover_image}
+                                                    loading="lazy" alt={movies.title} title={movies.title} />
+                                                {/* <div class="movieposter_gradation"></div> */}
+                                            </a>
+                                            <div class="moviesummary">
+                                                <h1>{movies.title}</h1>
+                                                <h4>{this.getRateString(movies.rating)}</h4>
+                                                <h4>{movies.year}</h4>
+                                                <div class="moviesynopsis">
+                                                    <p>{movies.synopsis}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                            })
+                        }
+                    </div>
+                </div>
+                
+                <div class='movies_wrapper'>
+                    <h1 class='movies_summary_category'>Drama</h1>
+                    <div class='movies'>
+                        {
+                            this.state.data.map((movies) => {
+                                if(movies.genres.includes('Drama')) {
+                                    return (
+                                        <div class={(this.props.isMobile ? "movie_mobile" : "movie") + " up-on-scroll"}>
+                                            <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
+                                                <img class="movieposter" src={movies.medium_cover_image}
+                                                    loading="lazy" alt={movies.title} title={movies.title} />
+                                                {/* <div class="movieposter_gradation"></div> */}
+                                            </a>
+                                            <div class="moviesummary">
+                                                <h1>{movies.title}</h1>
+                                                <h4>{this.getRateString(movies.rating)}</h4>
+                                                <h4>{movies.year}</h4>
+                                                <div class="moviesynopsis">
+                                                    <p>{movies.synopsis}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                            })
+                        }
+                    </div>
+                </div>
+                
+                <div class='movies_wrapper'>
+                    <h1 class='movies_summary_category'>Documentary</h1>
+                    <div class='movies'>
+                        {
+                            this.state.data.map((movies) => {
+                                if(movies.genres.includes('Documentary')) {
+                                    return (
+                                        <div class={(this.props.isMobile ? "movie_mobile" : "movie") + " up-on-scroll"}>
+                                            <a class="movielink" href={this.getYutubeUrl(movies.title)} target="_blink">
+                                                <img class="movieposter" src={movies.medium_cover_image}
+                                                    loading="lazy" alt={movies.title} title={movies.title} />
+                                                {/* <div class="movieposter_gradation"></div> */}
+                                            </a>
+                                            <div class="moviesummary">
+                                                <h1>{movies.title}</h1>
+                                                <h4>{this.getRateString(movies.rating)}</h4>
+                                                <h4>{movies.year}</h4>
+                                                <div class="moviesynopsis">
+                                                    <p>{movies.synopsis}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         );

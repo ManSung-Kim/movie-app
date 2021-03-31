@@ -70,7 +70,7 @@ function App() {
   });
 
   const getDeviceType = () => {
-    let dev = "Device is ";
+    let dev = "";
 
     if(isPc) {
       dev += "PC";
