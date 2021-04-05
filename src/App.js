@@ -103,6 +103,7 @@ function App() {
 
   const setBackgroundImageOpacity = (opacity) => {
     const bg = document.querySelector('.background-change-wrap > div');
+    if(bg==null) return;
     bg.style.opacity = opacity;
   }
 
@@ -115,8 +116,9 @@ function App() {
   }
 
   const handleScroll = (e) => { // scroll callback
-     const changeBgSection = document.querySelector('.background-change-wrap');
-     const { top: bgTop, height: bgHeight } = changeBgSection.getBoundingClientRect();
+    const changeBgSection = document.querySelector('.background-change-wrap');
+    if(changeBgSection==null) return;
+    const { top: bgTop, height: bgHeight } = changeBgSection.getBoundingClientRect();
     var opacity = '1';
     if (bgTop < 0) {
       const rate = (-1) * bgTop / 4;
@@ -149,11 +151,16 @@ function App() {
         {getDeviceType()}
       </div>
       <div class='container'>
-        <div class={'background-change-wrap'}>
+        {/* <div class={'background-change-wrap'}>
           <div class={isUsingGradAnim?'gradient-border':''}>
             <img name='img-buffer-1'/>
           </div>
-        </div>
+        </div> */
+          <div class={'background-change-wrap'}>
+            <div class={isUsingGradAnim ? 'gradient-border' : ''}>
+            </div>
+          </div>
+        }
       <Movies isMobile={isMobile} notifyInitialLoadingComplete={notifyInitialLoadingComplete}/>
       </div>
     </div>

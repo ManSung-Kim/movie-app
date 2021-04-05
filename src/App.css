@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   font-family: 'Raleway';
+  height: 100%;
 }
 
 .App-logo {
@@ -67,6 +68,8 @@
   /* flex-wrap: nowrap; */
   align-items: stretch;
   flex-direction: column;
+  /* height: 100%; */ /*100%하면 스크롤링 anim 실행불가*/
+  background-color: black;
   width: 100%;
   position: absolute; /* bg와 따로 스크롤링되기위해 abs설정 */
   overflow: auto;
@@ -214,7 +217,8 @@
   align-items: center;
   width: 100%;
   /*position: absolute; *//* bg와 따로 스크롤링되기위해 abs설정 */
-  overflow: auto;
+  overflow: hidden;
+  overflow-x: scroll;
 }
 
 .movies::-webkit-scrollbar { /*스크롤바 백그라운드*/
@@ -365,7 +369,7 @@
 .background-change-wrap > div > img {
   position: sticky;
   width: 100%;
-  height: calc(100% - 80px);
+  /* height: calc(100% - 80px); */
   object-fit: cover;
 }
 
@@ -376,6 +380,7 @@
   border-radius: calc(2 * var(--borderWidth));
   animation: animatedgradient 3s ease alternate infinite;
   background-size: 300% 300%;
+  z-index: 3;
 }
 
 @keyframes animatedgradient {
